@@ -3,11 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>Coding Market Place</title>
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
-        <link rel="stylesheet" href="bower_components/angular-material/angular-material.css"/>
+        <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/static/bower_components/angular-material/angular-material.css"/>
         <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-        <link rel="stylesheet" href="css/app.css"/>
-        <link rel="stylesheet" href="css/upload.css"/>
+        <link rel="stylesheet" href="/static/css/app.css"/>
+        <link rel="stylesheet" href="/static/css/upload.css"/>
     </head>
     <body id="allProjects" md-swipe-right="openSideNavPanel()" md-swipe-left="closeSideNavPanel()">
         <div ng-controller="ToolbarCtrl">
@@ -15,7 +15,7 @@
                 <div class="md-toolbar-tools">
                     <md-button class="md-icon-button" 
                                aria-label="Side Panel" ng-click="openSideNavPanel()" hide-gt-md>
-                        <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+                        <md-icon md-svg-src="/static/img/icons/menu.svg"></md-icon>
                     </md-button>
                     <h2>
                         <span><a href="#/">Coding Market Place</a></span>
@@ -59,7 +59,7 @@
                                aria-label="Side Panel" 
                                ng-click="openSideNavNotif()"
                                ng-show="loggedIn === true">
-                        <md-icon md-svg-src="img/icons/bell.svg" style="color: {{couleur}}"></md-icon>
+                        <md-icon md-svg-src="/static/img/icons/bell.svg" style="color: {{couleur}}"></md-icon>
                     </md-button>
                     <md-button 
                         aria-label="Connexion" 
@@ -106,7 +106,7 @@
                         <input ng-model="input.searchText"
                                placeholder="Rechercher un projet" flex>
                     </md-input-container>
-                    <md-icon md-svg-src="img/icons/search.svg"
+                    <md-icon md-svg-src="/static/img/icons/search.svg"
                              style="color:#fff" 
                              aria-label="search project"
                              ng-click="search()"
@@ -168,42 +168,42 @@
         </footer>
     </div>
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="/static/bower_components/jquery/dist/jquery.js"></script>
     <!-- jquery file upload related. only needed if jquery file upload is used -->
-    <script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-    <script src="bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
-    <script src="bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
+    <script src="/static/bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="/static/bower_components/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="/static/bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
     <!-- end jquery file upload related -->
-    <script src="bower_components/cloudinary_js/js/jquery.cloudinary.js"></script>
+    <script src="/static/bower_components/cloudinary_js/js/jquery.cloudinary.js"></script>
     <!-- angular file upload -->
-    <script src="bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+    <script src="/static/bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
     <!-- angular dependencies -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/static/bower_components/angular/angular.js"></script>
+    <script src="/static/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/static/bower_components/angular-aria/angular-aria.js"></script>
+    <script src="/static/bower_components/angular-route/angular-route.js"></script>
+    <script src="/static/bower_components/angular-resource/angular-resource.js"></script>
     <!-- cloudinary angular plugin -->
-    <script src="bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
+    <script src="/static/bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
     <!-- angular file upload -->
-    <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="/static/bower_components/ng-file-upload/ng-file-upload.js"></script>
 
-    <script src="bower_components/angular-material/angular-material.min.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/cloudinary-core/cloudinary-core.js"></script>
-    <script src="bower_components/cloudinary-jquery/cloudinary-jquery.js"></script>
-    <script src="bower_components/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js"></script>
+    <script src="/static/bower_components/angular-material/angular-material.min.js"></script>
+    <script src="/static/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/static/bower_components/cloudinary-core/cloudinary-core.js"></script>
+    <script src="/static/bower_components/cloudinary-jquery/cloudinary-jquery.js"></script>
+    <script src="/static/bower_components/cloudinary-jquery-file-upload/cloudinary-jquery-file-upload.js"></script>
 
-    <script src="js/app.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/toolbar.js"></script>
-    <script src="js/projects.js"></script>
-    <script src="js/project.js"></script>
-    <script src="js/user.js"></script>
-    <script src="js/admin.js"></script>
-    <script src="js/footer.js"></script>
-    <script src="js/config.js"></script>
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/services.js"></script>
+    <script src="/static/js/toolbar.js"></script>
+    <script src="/static/js/projects.js"></script>
+    <script src="/static/js/project.js"></script>
+    <script src="/static/js/user.js"></script>
+    <script src="/static/js/admin.js"></script>
+    <script src="/static/js/footer.js"></script>
+    <script src="/static/js/config.js"></script>
 
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 </html>

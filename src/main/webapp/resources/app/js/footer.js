@@ -22,7 +22,7 @@ footerApp.controller('FooterCtrl',
             $scope.showDialogContact = function (ev) {
                 $mdDialog.show({
                     controller: DialogController,
-                    templateUrl: 'partials/dialog-contact.tmpl.html',
+                    templateUrl: '/static/partials/dialog-contact.tmpl.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true

@@ -219,7 +219,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     $scope.showDialogConnect = function (ev) {
         $mdDialog.show({
             controller: DialogController,
-            templateUrl: 'partials/dialog-connect.tmpl.html',
+            templateUrl: '/static/partials/dialog-connect.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true
@@ -235,7 +235,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     $scope.showDialogForgotPassword = function (e) {
         $mdDialog.show({
             controller: DialogController,
-            templateUrl: 'partials/dialog-forgot-password.tmpl.html',
+            templateUrl: '/static/partials/dialog-forgot-password.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: e,
             clickOutsideToClose: true
@@ -267,7 +267,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     $scope.showDialogInscription = function (ev) {
         $mdDialog.show({
             controller: DialogController,
-            templateUrl: 'partials/dialog-inscription.tmpl.html',
+            templateUrl: '/static/partials/dialog-inscription.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true
@@ -283,7 +283,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     $scope.showDialogProjectCreate = function (ev) {
         $mdDialog.show({
             controller: DialogController,
-            templateUrl: 'partials/dialog-creation-project.tmpl.html',
+            templateUrl: '/static/partials/dialog-creation-project.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose: true

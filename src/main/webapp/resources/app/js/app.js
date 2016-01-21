@@ -18,39 +18,39 @@ var codingMarketPlaceApp = angular.module('CodingMarketPlaceApp', [
 codingMarketPlaceApp.config(function ($routeProvider) {
     $routeProvider.
             when('/', {
-                templateUrl: 'partials/template-index.html',
+                templateUrl: '/static/partials/template-index.html',
                 controller: ''
             }).
             when('/search-projects/:key?', {
-                templateUrl: 'partials/template-projects.html',
+                templateUrl: '/static/partials/template-projects.html',
                 controller: 'ProjectsController'
             }).
             when('/projects/:projectId', {
-                templateUrl: 'partials/template-detail-project.html',
+                templateUrl: '/static/partials/template-detail-project.html',
                 controller: 'ProjectController'
             }).
             when('/legal-notice', {
-                templateUrl: 'partials/legal-notice.html',
+                templateUrl: '/static/partials/legal-notice.html',
                 controller: ''
             }).
             when('/user/:userId', {
-                templateUrl: 'partials/template-detail-user.html',
+                templateUrl: '/static/partials/template-detail-user.html',
                 controller: 'UserController'
             }).
             when('/admin', {
-                templateUrl: 'partials/admin/template-choice-module.html',
+                templateUrl: '/static/partials/admin/template-choice-module.html',
                 controller: 'AdminController'
             }).
             when('/admin/user-management', {
-                templateUrl: 'partials/admin/user-management.html',
+                templateUrl: '/static/partials/admin/user-management.html',
                 controller: 'AdminController'
             }).
             when('/contact', {
-                templateUrl: 'partials/template-contact.tmpl.html',
+                templateUrl: '/static/partials/template-contact.tmpl.html',
                 controller: ''
             }).
             when('/forgot-password/:userId', {
-                templateUrl: 'partials/template-forgot-password.html',
+                templateUrl: '/static/partials/template-forgot-password.html',
                 controller: 'UserController'
             }).
             otherwise({

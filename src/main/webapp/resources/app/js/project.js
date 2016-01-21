@@ -48,7 +48,7 @@ projectApp.controller('ProjectController',
             $scope.ValidateProjectDialog = function (ev) {
                 $mdDialog.show({
                     controller: DialogController,
-                    templateUrl: 'partials/dialog-validate-project.tmpl.html',
+                    templateUrl: '/static/partials/dialog-validate-project.tmpl.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: true

@@ -4,3 +4,7 @@ build
 .classpath
 .settings/
 .project
+**.swp
+project.iml
+project.ipr
+project.iws

@@ -1,4 +1,4 @@
-package hello;
+package cmp.controllers;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "people", path = "people")
-public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
+@RepositoryRestResource(collectionResourceRel = "user", path = "user")
+public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-	List<Person> findByLastName(@Param("name") String name);
+	List<User> findByNick(@Param("nick") String name);
 
 }

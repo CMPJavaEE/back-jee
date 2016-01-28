@@ -143,26 +143,12 @@
                     Déconnexion
                 </md-button>
             </md-sidenav>
-
-            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" layout-wrap>
-
-                <md-toolbar class="md-theme-light">
-                    <h1 class="md-toolbar-tools">Notifications</h1>
-                </md-toolbar>
-                <md-content ng-controller="RightCtrl" layout-padding>
-                    <md-list-item class="md-3-line" ng-repeat="notif in notifs">
-                        <p>{{notif.Text}}</p>                
-                    </md-list-item>
-                </md-content>
-
-            </md-sidenav>
         </div>
     <md-content class="view-container" ng-view>
     </md-content>
 
     <div flex>
         <footer ng-controller="FooterCtrl">
-            <a ng-click="showDialogContact($event)">Contactez-nous !</a>
             <a href="#/legal-notice">Mentions légales</a>
             <div>Conding Market Place - © PREB S.A.S.</div>
         </footer>

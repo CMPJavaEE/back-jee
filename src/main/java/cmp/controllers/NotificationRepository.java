@@ -7,6 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource(collectionResourceRel = "notification", path = "notification")
-public interface NotificationRepository extends PagingAndSortingRepository<User, Long> {
+public interface NotificationRepository extends PagingAndSortingRepository<Notification, Long> {
 
 }

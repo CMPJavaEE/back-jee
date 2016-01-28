@@ -1,27 +1,3 @@
-<script type="text/javascript">
-    $text = "";
-    $captchaValidated = false;
-
-    var verifyCallback = function (response) {
-        $text = response;
-        $.ajax({
-            type: "POST",
-            url: "http://codingmarketplace.apphb.com/Api/Users/Register?g_recaptcha_response=" + $text,
-            success: function (results) {
-                if (results === "Well identified") {
-                    $captchaValidated = true;
-                }
-            }
-        });
-    };
-
-    var onloadCallback = function () {
-        grecaptcha.render('g_recaptcha', {
-            'sitekey': '6LfeEBETAAAAAEwwPDwWIrLieii8JGJyHyF06p6j',
-            'callback': verifyCallback
-        });
-    };
-</script>
 <md-dialog aria-label="Inscription"
            ng-cloak
            ng-controller="ToolbarCtrl">
@@ -157,21 +133,6 @@
                 </div>
             </div>
         </span>
-        <span layout-gt-sm="row">
-            <div id="g_recaptcha"
-                 flex-offset="25">
-            </div>
-        </span>
-        <br/>
-        <span layout-gt-sm="row">
-            <input type="checkbox" 
-                   ng-model="agreecondition"
-                   aria-label="Agree conditions"
-                   ng-required="agreecondition === true">
-            <p style="margin-left:10px;">
-                J'accepte les conditions générales d'utilisation *
-            </p>
-        </span>
         <span style="color: gray;">
             Tous les champs portant une * sont obligatoires.
         </span>
@@ -181,8 +142,3 @@
         </md-button>
     </md-dialog-content>
 </md-dialog>
-<script src='https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit' 
-        async 
-        defer>
-
-</script>

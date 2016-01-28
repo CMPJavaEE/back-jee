@@ -51,7 +51,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
         UniqId: $cookies.get('user_UniqId'),
         ImageUrl: undefined,
         ProjectCreator: $cookies.get('user_ProjectCreator') === "true" ? true : false || undefined,
-        tags: ''
+        tags: []
     };
     
     $scope.userService = UserService.data;

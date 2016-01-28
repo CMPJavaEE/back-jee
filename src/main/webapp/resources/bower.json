@@ -11,11 +11,6 @@
     "angular-resource": "1.4.x",
     "angular-animate": "1.4.x",
     "angular-material": "latest",
-    "angular-cookies": "latest",
-    "cloudinary_ng": "#master",
-    "ng-file-upload": "latest",
-    "cloudinary-core": "latest",
-    "cloudinary-jquery": "latest",
-    "cloudinary-jquery-file-upload": "latest"
+    "angular-cookies": "latest"
   }
 }

@@ -17,16 +17,12 @@
                class="error">
                 Vous devez accepter les conditions d'utilisation
             </p>
-            <p ng-if="captchaNotValidated"
-               class="error">
-                Le captcha n'a pas été validé
-            </p>
         </div>
         <span layout-gt-sm="row">
             <md-input-container flex-gt-sm="25">
                 <label>Prénom *</label>
                 <md-icon md-svg-src="/static/img/icons/person.svg"
-                         style="color: #7CFC00; margin-top: 28px;">
+                         style="color: #7CFC00;">
                 </md-icon>
                 <input ng-model="firstname" 
                        placeholder="Prénom" 
@@ -50,7 +46,7 @@
             <md-input-container flex>
                 <label>Adresse e-mail *</label>
                 <md-icon md-svg-src="/static/img/icons/mail.svg" 
-                         style="color: #1E90FF; margin-top: 28px;"></md-icon>
+                         style="color: #1E90FF;"></md-icon>
                 <input type="email"
                        ng-model="mail" 
                        placeholder="Adresse e-mail" 
@@ -62,7 +58,7 @@
             <md-input-container flex="50">
                 <label>Mot de passe *</label>
                 <md-icon md-svg-src="/static/img/icons/password.svg" 
-                         style="color: #FF8C00; margin-top: 28px;">
+                         style="color: #FF8C00;">
                 </md-icon>
                 <input ng-model="password" 
                        type="password"
@@ -119,19 +115,6 @@
                           placeholder="Description">
                 </textarea>
             </md-input-container>
-        </span>
-        <span layout-gt-sm="row" 
-              layout-wrap>
-            <div ng-controller="photoUploadCtrl">
-                <div class="form_line">
-                    <label>Image:</label>
-                    <div class="form_controls">
-                        <div class="upload_button_holder">
-                            <div href="#" class="upload_button" ngf-select="uploadFiles($files)" multiple title="upload" resetOnClick="true" >Upload</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </span>
         <span style="color: gray;">
             Tous les champs portant une * sont obligatoires.

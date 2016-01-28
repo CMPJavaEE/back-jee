@@ -1,4 +1,4 @@
-var toolbarApp = angular.module('toolbarApp', ['ngMaterial', 'ngFileUpload', 'CodingMarketPlaceApp']);
+var toolbarApp = angular.module('toolbarApp', ['ngMaterial', 'CodingMarketPlaceApp']);
 
 toolbarApp.config(function ($httpProvider) {
     //Enable cross domain calls

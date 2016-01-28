@@ -1,4 +1,4 @@
-<div id="template-users-management" layout-padding ng-controller="AdminController">
+<div id="template-users-management" layout-padding>
 
     <h1>Gestion des utilisateurs</h1>
     <md-input-container flex="40" flex-sm="100">
@@ -11,35 +11,35 @@
           layout-align="space-around left">
         
         <md-card-content class="md-whiteframe-z1" 
-                         ng-repeat="user in users| filter:queryFilter"
+                         ng-repeat="user in users.all| filter:queryFilter"
                          layout-margin
                          layout-padding
                          layout="column"
                          flex-gt-sm="40" 
                          style="background-color: #F8F8FF; word-break: break-all;">
-            <md-list ng-controller="AdminController" ng-cloak>
+            <md-list ng-cloak>
                 <div class="md-list-item-text" layout="column">
-                    <h3>{{ user.FirstName}} {{user.LastName}}</h3>
-                    <h4>{{ user.Login}}</h4>
-                    <p>{{ user.Email}}</p>
+                    <h3>{{user.firstName}} {{user.lastName}}</h3>
+                    <h4>{{user.nick}}</h4>
+                    <p>{{user.email}}</p>
                 </div>
                 <md-subheader class="md-no-sticky">Type de Compte</md-subheader>
                 <md-list-item >
                     <p> Administrateur </p>
-                    <md-checkbox class="md-secondary" ng-model="user.Admin"></md-checkbox>
+                    <md-checkbox class="md-secondary" ng-model="user.isAdmin"></md-checkbox>
                 </md-list-item>
                 <md-list-item >
                     <p> Porteur de projet </p>
-                    <md-checkbox class="md-secondary" ng-model="user.ProjectCreator"></md-checkbox>
+                    <md-checkbox class="md-secondary" ng-model="user.isProvider"></md-checkbox>
                 </md-list-item>
                 <md-list-item >
                     <p> Developpeur </p>
-                    <md-checkbox class="md-secondary" ng-model="user.Developper"></md-checkbox>
+                    <md-checkbox class="md-secondary" ng-model="user.isDevelopper"></md-checkbox>
                 </md-list-item>
             </md-list>
 
-            <md-button class="md-primary md-raised" ng-click="updateUser(user.UniqId, user.Admin, user.ProjectCreator, user.Developper)">Update User</md-button>
-            <md-button class="md-warn md-raised" ng-click="deleteUser(user.UniqId)">Delete User</md-button>
+            <md-button class="md-primary md-raised" ng-click="updateUser(user.idd, user.isAdmin, user.isProvider, user.isDevelopper)">Update User</md-button>
+            <md-button class="md-warn md-raised" ng-click="deleteUser(user.id)">Delete User</md-button>
         </md-card-content>
     </span>
 </div>

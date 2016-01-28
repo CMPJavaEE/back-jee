@@ -7,7 +7,8 @@ adminApp.controller('AdminController',
                 $http,
                 $rootScope,
                 $cookies,
-                $route)
+                $route,
+                UserService)
         {
 
             // $rootScope
@@ -15,27 +16,20 @@ adminApp.controller('AdminController',
             $rootScope.loggedIn = ($test === "true");
             $rootScope.isAdmin = $cookies.get('user_Admin') === "true" ? true : false;
             
-            // $scope
-            $scope.selectedUser = {};
-            $scope.queryFilter = '';
-            $scope.loadUsersData();
-            $scope.adminId = $cookies.get('user_UniqId');
-
-
             ////////////////////////////
             /////Functions du scope/////
             ////////////////////////////
 
+            $scope.users = {};
+
             $scope.UserManagement = function () {
                 $location.path('/admin/user-management');
             };
-            $scope.loadUsersData = function () {
-                $http.get('http://codingmarketplace.apphb.com/api/Users/All').success(function (data) {
-                    $scope.users = data;
-                });
-                if ($rootScope.loggedIn === false || $rootScope.isAdmin === false) {
+            $scope.loadUsersData = function () {console.info("coucou");
+                
+                /*if ($rootScope.loggedIn === false || $rootScope.isAdmin === false) {
                     $location.path('#/');
-                }
+                }*/
             };
 
             $scope.deleteUser = function (id) {
@@ -65,6 +59,14 @@ adminApp.controller('AdminController',
                         });
 
             };
+
+            // $scope
+            $scope.selectedUser = {};
+            $scope.queryFilter = '';
+            UserService.all();
+            $scope.users = UserService.data;
+            $scope.adminId = $cookies.get('user_UniqId');
+            
         });
 
 

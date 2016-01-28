@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Id;
 import java.util.List;
 
-@Entity
+@Entity(name="Users")
 public class User {
 
 	@Id

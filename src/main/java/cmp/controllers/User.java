@@ -17,17 +17,17 @@ public class User {
 
 	public String firstName;
 	public String lastName;
-	public String nick;
+	public String login;
 	public String description;
 	public String avatar;
 	public boolean isDevelopper;
 	public boolean isProvider;
-	public String mpd;
+	public String password;
 	public String email;
 	public String gitHub;
 	public String twitter;
 	public String linkdin;
-	public boolean idAdmin;
+	public boolean isAdmin;
 
 	@ManyToMany
 	public List<Language> progLangs;

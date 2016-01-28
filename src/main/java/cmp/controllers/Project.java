@@ -28,5 +28,5 @@ public class Project {
 	public boolean started;
 
 	@ManyToMany()
-	public List<Project> registrations;
+	public List<User> registrations;
 }

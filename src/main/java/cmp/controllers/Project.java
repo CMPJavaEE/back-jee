@@ -14,19 +14,19 @@ public class Project {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	public long id;
 
-	private String description;
+	public String description;
 	@ManyToOne
-	private User owner;
-	private String title;
-	private int duration;
-	private float budget;
-	private String image;
-	private Date creationDate;
-	private boolean ended;
-	private boolean started;
+	public User owner;
+	public String title;
+	public int duration;
+	public float budget;
+	public String image;
+	public Date creationDate;
+	public boolean ended;
+	public boolean started;
 
 	@ManyToMany()
-	private List<Project> registrations;
+	public List<Project> registrations;
 }

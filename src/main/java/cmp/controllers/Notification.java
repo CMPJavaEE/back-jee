@@ -11,10 +11,10 @@ public class Notification {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	public long id;
 
-	private String content;
-	private boolean readed;
+	public String content;
+	public boolean readed;
 	@ManyToOne
-	private User user;
+	public User user;
 }

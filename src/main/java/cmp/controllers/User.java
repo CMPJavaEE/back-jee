@@ -13,31 +13,33 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	public long id;
 
-	private String firstName;
-	private String lastName;
-	private String nick;
-	private String description;
-	private String avatar;
-	private boolean isDevelopper;
-	private boolean isProvider;
-	private String mpd;
-	private String email;
-	private String gitHub;
-	private String twitter;
-	private String linkdin;
-	private boolean idAdmin;
-
-	@ManyToMany
-	private List<Language> progLangs;
+	public String firstName;
+	public String lastName;
+	public String nick;
+	public String description;
+	public String avatar;
+	public boolean isDevelopper;
+	public boolean isProvider;
+	public String mpd;
+	public String email;
+	public String gitHub;
+	public String twitter;
+	public String linkdin;
+	public boolean idAdmin;
 
 	@ManyToMany
-	private List<Project> registeredProjects;
+	public List<Language> progLangs;
+
+	@ManyToMany
+	public List<Project> registeredProjects;
 
 	@OneToMany(mappedBy="owner")
-	private List<Project> createdProjects;
+	public List<Project> createdProjects;
 
 	@OneToMany(mappedBy="user")
-	private List<Notification> notifications;
+	public List<Notification> notifications;
+
+
 }

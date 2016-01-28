@@ -12,10 +12,10 @@ public class Language {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	public long id;
 
-	private String tag;
+	public String tag;
 
 	@ManyToMany()
-	private List<User> programmers;
+	public List<User> programmers;
 }

@@ -1,0 +1,69 @@
+{
+  "name": "cloudinary-jquery",
+  "version": "2.0.5",
+  "homepage": "http://cloudinary.com",
+  "authors": [
+    {
+      "name": "Cloudinary",
+      "email": "info@cloudinary.com",
+      "homepage": "http://cloudinary.com"
+    }
+  ],
+  "description": "Official Cloudinary jQuery library. Cloudinary is an end-to-end solution for all your image and video needs.",
+  "main": "cloudinary-jquery.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cloudinary/pkg-cloudinary-jquery.git"
+  },
+  "dependencies": {
+    "jquery": ">=1.6"
+  },
+  "keywords": [
+    "CDN",
+    "cloud",
+    "cloudinary",
+    "convert",
+    "conversion",
+    "effects",
+    "files",
+    "images",
+    "jquery",
+    "manipulation",
+    "multiple",
+    "performance",
+    "picture",
+    "pictures",
+    "preview",
+    "progress",
+    "responsive",
+    "storage",
+    "thumbnail",
+    "thumbnails",
+    "transformations",
+    "uploads",
+    "videos",
+    "widgets"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "2.0.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "2.0.5",
+    "commit": "e6bcaf4496a56531851846dfb4467a83c1c3ef32"
+  },
+  "_source": "git://github.com/cloudinary/pkg-cloudinary-jquery.git",
+  "_target": "*",
+  "_originalSource": "cloudinary-jquery"
+}

@@ -326,7 +326,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     }
     ;
 
-}).controller('photoUploadCtrl', ['$scope', '$rootScope', '$routeParams', '$location', 'Upload',
+}).controller('photoUploadCtrl', ['$scope', '$rootScope', '$routeParams', '$location',
     /* Uploading with Angular File Upload */
     function ($scope, $rootScope, $routeParams, $location, $upload) {
         var d = new Date();

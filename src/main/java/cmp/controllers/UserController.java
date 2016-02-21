@@ -14,4 +14,5 @@ public class UserController {
     public String login(@RequestBody final LoginForm login) {
         return login.login + " " + login.password;
     }
+
 }

@@ -48,13 +48,20 @@ userApp.controller('UserController',
             ////////////////////////////
             
             $scope.loadUserDetail = function () {
-                $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + $routeParams.userId).success(function (data) {
+                $http.get('http://localhost:8080/user/' + $routeParams.userId).success(function (data) {
                     $scope.user = data;
                     if ($scope.IdUserConnected === $routeParams.userId)
                     {
                         $scope.myAccount = true;
                     }
                 });
+//                $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + $routeParams.userId).success(function (data) {
+//                    $scope.user = data;
+//                    if ($scope.IdUserConnected === $routeParams.userId)
+//                    {
+//                        $scope.myAccount = true;
+//                    }
+//                });
             };
             $scope.showDialogContact = function (ev) {
                 $mdDialog.show({

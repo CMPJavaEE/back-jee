@@ -4,27 +4,29 @@
     <h1>Les projets actuellement disponibles</h1>
     <h2>Nous avons actuellement {{countProjects}} projets correspondant à votre recherche</h2>
     <a href='#/search-projects/'>Voir tous les projets</a>
+    
+    
     <span layout="row" 
           layout-wrap 
           layout-margin
           layout-padding 
           layout-align="space-around left">
         <md-card-content class="md-whiteframe-z1" 
-                         ng-repeat="projet in projects" 
+                         ng-repeat="projet in projects.projects" 
                          layout-margin
                          layout-padding
                          flex-gt-sm="40" 
                          style="background-color: #F8F8FF; word-break: break-all;">
-            <img src="{{projet.ImageUrl}}" 
+            <img src="{{projet.avatar}}" 
                  alt="Image du projet" 
                  style="width: 200px; height: 200px;"/>
-            <h3>{{projet.Title}}</h3>
-            <h4>Par {{projet.userName}} 
+            <h3>{{projet.title}}</h3>
+<!--            <h4>Par {{projet.userName}} 
             <md-icon md-svg-src="/static/img/icons/calendar.svg"></md-icon> {{projet.Duration}} / {{projet.Budget}} 
             <md-icon md-svg-src="/static/img/icons/money.svg"></md-icon>
-            </h4>
-            <p>{{projet.Description}}</p>
-            <a ng-href="#/projects/{{projet.Id}}" 
+            </h4>-->
+            <p>{{projet.description}}</p>
+            <a ng-href="#/projects/{{projet.id}}" 
                layout-align="bottom left">
                Voir les détails du projet
             </a>

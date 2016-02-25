@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public ResponseEntity<?> createuser(@RequestBody final NewUserForm newUser)
 	{
-		if(urepo.findByLogin(newUser.login).isEmpty())
+		if(urepo.findOneByLoginOrEmail(newUser.login, newUser.login) == null)
 		{
 			User u = new User();
 			u.login = newUser.login;
@@ -52,7 +52,7 @@ public class UserController {
 			u.isProvider = newUser.is_provider;
 			u.email = newUser.email;
 			
-			String salt = BCrypt.gensalt(15);//(new Random()).nextInt());
+			String salt = BCrypt.gensalt(15);
 
 			u.password = BCrypt.hashpw(newUser.password, salt);
 			urepo.save(u);

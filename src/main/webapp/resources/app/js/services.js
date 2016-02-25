@@ -3,7 +3,7 @@ var codingMarketPlaceApp = angular.module('CodingMarketPlaceApp');
 codingMarketPlaceApp.factory('User', function($resource) {
     return $resource('', {}, {
         login: {method: 'post', url:'http://localhost:8080/login'},
-        all: {method: 'get', url:'http://localhost:8080/user'}
+        all: {method: 'get', url:'http://localhost:8080/user/'}
     });
 });
 
@@ -39,7 +39,7 @@ codingMarketPlaceApp.factory('Project', function($resource) {
     });
 });
 
-codingMarketPlaceApp.service('ProjectService', function (Project) {
+codingMarketPlaceApp.service('ProjectService', function (Project, $http) {
     var data = {
         projects: []
     };
@@ -47,6 +47,14 @@ codingMarketPlaceApp.service('ProjectService', function (Project) {
     var projects = function () {
         Project.all(function(response) {
             data.projects = response._embedded.project;
+            angular.forEach(data.projects, function(projet){
+                $http.get('http://localhost:8080/project/' + projet.id + '/owner').then(function (data) {
+                     projet.owner = {
+                         name: data.data.firstName + ' ' + data.data.lastName,
+                         id: data.data.id
+                     };
+                });
+            });
         });
     };
     

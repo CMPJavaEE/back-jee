@@ -22,7 +22,7 @@ userApp.controller('UserController',
             
             $scope.projects = loadUserProjects();
             $scope.projects = loadUserProjects();
-            $scope.IdUserConnected = $cookies.get('user_UniqId');
+            $scope.IdUserConnected = $cookies.get('user_id');
             $scope.password = '';
             $scope.verif_password = '';
             $scope.currentProjects = undefined;
@@ -38,7 +38,7 @@ userApp.controller('UserController',
                 Activated: undefined,
                 Admin: $cookies.get('user_Admin') === "true" ? true : false || undefined,
                 Description: undefined,
-                UniqId: $cookies.get('user_UniqId'),
+                id: $cookies.get('user_id'),
                 ImageUrl: undefined,
                 ProjectCreator: $cookies.get('user_ProjectCreator') === "true" ? true : false || undefined
             };

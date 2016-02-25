@@ -13,7 +13,6 @@ projectsApp.controller('ProjectsController',
 
             //$scope
             $scope.searchText = $routeParams.key || '';
-            $scope.countProjects = 0;
             $scope.user = {};
             $scope.projects = [];
             
@@ -22,8 +21,6 @@ projectsApp.controller('ProjectsController',
             //$rootScope
             $test = $cookies.get('loggedIn');
             $rootScope.loggedIn = ($test === "true");
-
-            $scope.countProjects = $scope.projects.projects.length + 1;
             ////////////////////////////
             /////Functions privées//////
             ////////////////////////////
@@ -38,7 +35,7 @@ projectsApp.controller('ProjectsController',
 //                        });
 //                    });
 //                });
-                ProjectService.projects();
+                projectPromise = ProjectService.projects();
                 $scope.projects = ProjectService.data;
             }
         });

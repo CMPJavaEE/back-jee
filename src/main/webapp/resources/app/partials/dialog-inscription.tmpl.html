@@ -89,33 +89,6 @@
                 </md-select>
             </md-input-container>
         </span>
-        <span layout-gt-sm="row" 
-              layout-wrap>
-            <md-chips
-                ng-model="user.tags"
-                readonly="false"
-                placeholder="Enter a tag"
-                delete-button-label="Remove Tag"
-                delete-hint="Press delete to remove tag"
-                secondary-placeholder="+Tag">
-
-                <md-autocomplete
-                    md-selected-item="selectedItem"
-                    md-search-text="searchText"
-                    md-items="item in querySearch(searchText)"
-                    md-item-text="item.name"
-                    placeholder="Ajouter un tag">
-                    <span md-highlight-text="searchText">{{item.name}}</span>
-                </md-autocomplete>
-
-            </md-chips>
-            <md-input-container flex>
-                <label>Description</label>
-                <textarea ng-model="description" 
-                          placeholder="Description">
-                </textarea>
-            </md-input-container>
-        </span>
         <span style="color: gray;">
             Tous les champs portant une * sont obligatoires.
         </span>

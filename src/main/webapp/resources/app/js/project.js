@@ -32,7 +32,7 @@ projectApp.controller('ProjectController',
             ////////////////////////////
 
             $scope.showLeaderDetail = function () {
-                $location.path('user/' + $scope.projet.IdUser);
+                $location.path('user/' + $scope.leaderProject.id);
             };
 
             $scope.ApplyProject = function () {
@@ -83,7 +83,7 @@ projectApp.controller('ProjectController',
             function loadProjectDetail() {
                 $http.get('http://localhost:8080/project/' + $scope.IdProject).success(function (data) {
                     $scope.projet = data;
-                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
+//                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
 //                    $http.get('http://codingmarketplace.apphb.com/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
 //                        $scope.applicants = data;
 //                        angular.forEach($scope.applicants, function (value) {
@@ -92,10 +92,10 @@ projectApp.controller('ProjectController',
 //                            }
 //                        });
 //                    });
-//                    $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + $scope.projet.IdUser).success(function (data) {
-//                        $scope.leaderProject = data;
-//                    });
-
+                    $http.get('http://localhost:8080/project/' + $scope.projet.id + '/owner').success(function (data) {
+                        $scope.leaderProject = data;
+                    });
+console.info($scope.projet);
                 }).error(function () {
                     alert("Erreur du chargement des postulants au projet.");
                 });

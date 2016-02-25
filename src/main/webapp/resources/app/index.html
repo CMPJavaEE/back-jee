@@ -21,17 +21,11 @@
                         <span><a href="#/">Coding Market Place</a></span>
                     </h2>
                     <span flex></span>
-                    <md-input-container style="margin-bottom: 0px;margin-top: 10px;" 
-                                        hide-sm hide-md
-                                        ng-show="loggedIn && showSearch">
-                        <input ng-model="input.searchText"
-                               placeholder="Rechercher un projet" autofocus>
-                    </md-input-container>
                     <md-button 
                              aria-label="search project"
-                             ng-click="showSearch = true"
                              hide-sm hide-md
-                             ng-show="loggedIn === true">
+                             ng-show="loggedIn === true"
+                             ng-click="search()">
                         Rechercher un projet
                     </md-button>
                     <md-button 
@@ -54,12 +48,6 @@
                         hide-sm hide-md
                         ng-show="loggedIn === true">
                         Mon compte
-                    </md-button>
-                    <md-button class="md-icon-button" 
-                               aria-label="Side Panel" 
-                               ng-click="openSideNavNotif()"
-                               ng-show="loggedIn === true">
-                        <md-icon md-svg-src="/static/img/icons/bell.svg" style="color: {{couleur}}"></md-icon>
                     </md-button>
                     <md-button 
                         aria-label="Connexion" 
@@ -101,17 +89,14 @@
                     Inscription
                 </md-button>
                 <span layout="row" layout-padding layout-margin>
-                    <md-input-container style=" margin:0;" 
-                                        ng-show="loggedIn === true" flex>
-                        <input ng-model="input.searchText"
-                               placeholder="Rechercher un projet" flex>
-                    </md-input-container>
-                    <md-icon md-svg-src="/static/img/icons/search.svg"
-                             style="color:#fff" 
+                    <md-button 
                              aria-label="search project"
-                             ng-click="search()"
-                             ng-show="loggedIn === true">
-                    </md-icon>
+                             ng-click="showSearch = true"
+                             hide-sm hide-md
+                             ng-show="loggedIn === true"
+                             ng-click="search()">
+                        Rechercher un projet
+                    </md-button>
                 </span>
                 <span flex></span>
                 <md-button 

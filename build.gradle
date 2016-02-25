@@ -31,6 +31,8 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-core")
     compile("com.fasterxml.jackson.core:jackson-annotations")
     compile("com.fasterxml.jackson.core:jackson-databind")
+	compile("org.springframework.security:spring-security-core")
+	compile("org.springframework.security:spring-security-crypto")
     runtime("org.postgresql:postgresql")
 }
 

@@ -128,9 +128,9 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Création d'un project
     $scope.createProject = function () {
-        var project = {ID: 0, Title: $scope.project.projectName, Description: $scope.project.description, Duration: $scope.project.projectDelay, Budget: $scope.project.projectBudget, IdUser: 0, ImageUrl: $rootScope.ImageUrlSaved, CreationDate: ''};
+        var project = {title: $scope.project.projectName, description: $scope.project.description, duration: $scope.project.projectDelay, budget: $scope.project.projectBudget, owner: 'user/'+$scope.user.id};
 
-        $http.post('http://codingmarketplace.apphb.com/api/Projects/Create/' + $rootScope.user['UniqId'], project).success(function (data) {
+        $http.post('http://localhost:8080/project',project).success(function (data) {
             $scope.hide();
             alert('Le projet a été créé avec succès');
         });
@@ -192,28 +192,12 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     };
 
     // Affichage pop-up de connexion 
-    $scope.showDialogConnect = function (ev) {console.info("coucou");
+    $scope.showDialogConnect = function (ev) {
         $mdDialog.show({
             controller: DialogController,
             templateUrl: '/static/partials/dialog-connect.tmpl.html',
             parent: angular.element(document.body),
             targetEvent: ev,
-            clickOutsideToClose: true
-        })
-                .then(function (answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-    };
-
-    // Affichage pop-up mot de passe oublié
-    $scope.showDialogForgotPassword = function (e) {
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: '/static/partials/dialog-forgot-password.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: e,
             clickOutsideToClose: true
         })
                 .then(function (answer) {

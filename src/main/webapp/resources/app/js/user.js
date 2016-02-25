@@ -19,8 +19,7 @@ userApp.controller('UserController',
 
             //$scope
             $scope.myAccount = false;
-            
-            $scope.projects = loadUserProjects();
+
             $scope.projects = loadUserProjects();
             $scope.IdUserConnected = $cookies.get('user_id');
             $scope.password = '';
@@ -28,25 +27,25 @@ userApp.controller('UserController',
             $scope.currentProjects = undefined;
             $scope.completedProjects = undefined;
             $scope.user = {
-                Login: $cookies.get('user_login') || undefined,
-                Password: undefined,
-                Email: undefined,
-                FirstName: undefined,
-                LastName: undefined,
+                login: $cookies.get('user_login') || undefined,
+                password: undefined,
+                email: undefined,
+                firstName: undefined,
+                lastName: undefined,
                 verif_password: undefined,
                 Developper: $cookies.get('user_Developper') === "true" ? true : false || undefined,
                 Activated: undefined,
                 Admin: $cookies.get('user_Admin') === "true" ? true : false || undefined,
-                Description: undefined,
+                description: undefined,
                 id: $cookies.get('user_id'),
-                ImageUrl: undefined,
+                avatar: undefined,
                 ProjectCreator: $cookies.get('user_ProjectCreator') === "true" ? true : false || undefined
             };
 
             ////////////////////////////
             /////Functions du scope/////
             ////////////////////////////
-            
+
             $scope.loadUserDetail = function () {
                 $http.get('http://localhost:8080/user/' + $routeParams.userId).success(function (data) {
                     $scope.user = data;
@@ -54,6 +53,7 @@ userApp.controller('UserController',
                     {
                         $scope.myAccount = true;
                     }
+                    $scope.finishload = true;
                 });
 //                $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + $routeParams.userId).success(function (data) {
 //                    $scope.user = data;
@@ -83,45 +83,40 @@ userApp.controller('UserController',
                 alert('Vos modifications ont bien été enregistrées..');
             };
             $scope.saveModification = function () {
+                console.info("coucou");
+                console.info($scope.user);
                 if ($scope.password === $scope.verif_password) {
-                    var user_modificated = {Id: $scope.user.Id, Email: $scope.user.Email, Password: $scope.password, Description: $scope.user.Description};
-                    $http.post('http://codingmarketplace.apphb.com/api/Users/Update/' + $scope.user.UniqId, user_modificated).success(function (data) {
+                    var user_modificated = {id: $scope.user.id, email: $scope.user.email, description: $scope.user.description};
+                    if ($scope.password != "") {
+                        user_modificated.password = $scope.password;
+                    }
+                    $http.put('http://localhost:8080/user/', user_modificated).success(function (data) {
+                        console.info("data", data);
                         $scope.showAlert();
                     });
                 }
             };
-            $scope.resetPassword = function () {
-                if ($scope.password === $scope.verif_password) {
-                    id = $routeParams.userId;
-                    var reset_password = {Password: $scope.password, UniqId: id};
-                    $http.post('http://localhost:57396/api/Users/ResetPassword/' + id, reset_password).success(function (data) {
-                        alert("Mot de passe changé !");
-                        $location.path('/');
-                    });
-                }
-                ;
-            };
 
-            
             ////////////////////////////
             /////Functions privées//////
             ////////////////////////////
-            
+
             function loadUserProjects() {
-                if ($rootScope.isDevelopper == true) {
-                    $http.get('http://codingmarketplace.apphb.com/api/Projects/AllForUser/' + $routeParams.userId).success(function (data) {
-                        $scope.projects = data;
-                    }).error(function (data) {
-                    });
-                } else if ($rootScope.isProjectCreator == true) {
-                    $http.get('http://codingmarketplace.apphb.com/api/Users/AllProjects/' + $routeParams.userId).success(function (data) {
-                        $scope.projects = data;
-                    }).error(function (data) {
-                    });
-                }
-            };
-            
-            
+//                if ($rootScope.isDevelopper == true) {
+//                    $http.get('http://codingmarketplace.apphb.com/api/Projects/AllForUser/' + $routeParams.userId).success(function (data) {
+//                        $scope.projects = data;
+//                    }).error(function (data) {
+//                    });
+//                } else if ($rootScope.isProjectCreator == true) {
+//                    $http.get('http://codingmarketplace.apphb.com/api/Users/AllProjects/' + $routeParams.userId).success(function (data) {
+//                        $scope.projects = data;
+//                    }).error(function (data) {
+//                    });
+//                }
+            }
+            ;
+
+
             $scope.loadUserDetail();
         });
 //Controller pour l'ouverture des différentes pop-up

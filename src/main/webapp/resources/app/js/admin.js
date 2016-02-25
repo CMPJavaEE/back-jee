@@ -10,12 +10,14 @@ adminApp.controller('AdminController',
                 $route,
                 UserService)
         {
-
+            if ($rootScope.loggedIn === false || $rootScope.isAdmin === false) {
+                $location.path('#/');
+            }
             // $rootScope
             $test = $cookies.get('loggedIn');
             $rootScope.loggedIn = ($test === "true");
             $rootScope.isAdmin = $cookies.get('user_Admin') === "true" ? true : false;
-            
+
             ////////////////////////////
             /////Functions du scope/////
             ////////////////////////////
@@ -24,12 +26,6 @@ adminApp.controller('AdminController',
 
             $scope.UserManagement = function () {
                 $location.path('/admin/user-management');
-            };
-            $scope.loadUsersData = function () {console.info("coucou");
-                
-                /*if ($rootScope.loggedIn === false || $rootScope.isAdmin === false) {
-                    $location.path('#/');
-                }*/
             };
 
             $scope.deleteUser = function (id) {
@@ -65,8 +61,8 @@ adminApp.controller('AdminController',
             $scope.queryFilter = '';
             UserService.all();
             $scope.users = UserService.data;
-            $scope.adminId = $cookies.get('user_UniqId');
-            
+            $scope.adminId = $cookies.get('user_id');
+
         });
 
 

@@ -44,7 +44,7 @@ public class UserController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public ResponseEntity<?> createuser(@RequestBody final NewUserForm newUser)
 	{
-		if(urepo.findOneByLoginOrEmail(newUser.login, newUser.login) == null)
+		if(urepo.findOneByLoginOrEmail(newUser.login, newUser.email) == null)
 		{
 			User u = new User();
 			u.login = newUser.login;

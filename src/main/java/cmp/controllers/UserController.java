@@ -51,6 +51,8 @@ public class UserController {
 			u.isDevelopper = newUser.is_dev;
 			u.isProvider = newUser.is_provider;
 			u.email = newUser.email;
+			u.lastName = newUser.lastName;
+			u.firstName = newUser.firstName;
 			
 			String salt = BCrypt.gensalt(15);
 

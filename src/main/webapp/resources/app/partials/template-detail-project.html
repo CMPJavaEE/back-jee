@@ -14,23 +14,23 @@
             <div layout="column" 
                  layout-wrap
                  layout-padding>
-                <h2>{{projet.Title}}</h2>
+                <h2>{{projet.title}}</h2>
                 <a ng-click="showLeaderDetail()" 
                    class="descLeader">
-                    Par {{leaderProject.FirstName}} {{leaderProject.LastName}}
+                    Par {{leaderProject.firstName}} {{leaderProject.lastName}}
                 </a>
                 <span>
                     <md-icon md-svg-src="/static/img/icons/calendar.svg"></md-icon>
-                    Durée estimée : {{projet.Duration}} jours
+                    Durée estimée : {{projet.duration}} jours
                 </span>
                 <span>
                     <md-icon md-svg-src="/static/img/icons/ticket.svg"></md-icon>
-                    Budget disponible : {{projet.Budget}} 
+                    Budget disponible : {{projet.budget}} 
                     <md-icon md-svg-src="/static/img/icons/money.svg"></md-icon>
                 </span>
                 <span flex>
                     <label>Description</label>
-                    <p flex>{{projet.Description}}</p>
+                    <p flex>{{projet.description}}</p>
                 </span>
                 <md-button class="md-raised md-primary" 
                            ng-show="!currentLeader && isDevelopper && !alreadyApplied && !projet.over && !projet.started" 

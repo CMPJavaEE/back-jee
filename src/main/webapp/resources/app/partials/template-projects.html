@@ -2,9 +2,7 @@
 <div id="template-projects" 
      layout-padding>
     <h1>Les projets actuellement disponibles</h1>
-    <h2>Nous avons actuellement {{countProjects}} projets correspondant à votre recherche</h2>
-    <a href='#/search-projects/'>Voir tous les projets</a>
-    
+    <h2>Nous avons actuellement {{projects.projects.length}} projets correspondant à votre recherche</h2>
     
     <span layout="row" 
           layout-wrap 
@@ -21,8 +19,8 @@
                  alt="Image du projet" 
                  style="width: 200px; height: 200px;"/>
             <h3>{{projet.title}}</h3>
-<!--            <h4>Par {{projet.userName}} 
-            <md-icon md-svg-src="/static/img/icons/calendar.svg"></md-icon> {{projet.Duration}} / {{projet.Budget}} 
+            <h4>Par {{projet.owner.name}} 
+<!--            <md-icon md-svg-src="/static/img/icons/calendar.svg"></md-icon> {{projet.Duration}} / {{projet.Budget}} 
             <md-icon md-svg-src="/static/img/icons/money.svg"></md-icon>
             </h4>-->
             <p>{{projet.description}}</p>

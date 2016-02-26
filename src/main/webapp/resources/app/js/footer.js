@@ -36,7 +36,7 @@ footerApp.controller('FooterCtrl',
 
             $scope.sendMail = function () {
                 var mail = {FirstName: $scope.firstName, LastName: $scope.lastName, Email: $scope.email, Message: $scope.content};
-                $http.post('http://codingmarketplace.apphb.com/api/Contact/ContactUs', mail).success(function () {
+                $http.post('/api/Contact/ContactUs', mail).success(function () {
                     alert('Votre amil a bien été envoyé');
                     $scope.hide();
                 });

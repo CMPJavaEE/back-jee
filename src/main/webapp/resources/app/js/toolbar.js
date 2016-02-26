@@ -48,7 +48,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
         Activated: undefined,
         Admin: $cookies.get('user_Admin') === "true" ? true : false || undefined,
         Description: undefined,
-        UniqId: $cookies.get('user_UniqId'),
+        id: $cookies.get('user_id'),
         ImageUrl: undefined,
         ProjectCreator: $cookies.get('user_ProjectCreator') === "true" ? true : false || undefined,
         tags: []
@@ -78,16 +78,16 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     // Connexion d'un user
     $scope.connection = function () {
         var identification = {password: $scope.user.password, login: $scope.user.mail};
-        $http.post('http://codingmarketplace.apphb.com/api/Users/Login', identification).success(function (data) {
+        $http.post('/user/login', identification).success(function (data) {
             $scope.user = data;
             $rootScope.user = $scope.user;
             $rootScope.loggedIn = true;
             $cookies.put('loggedIn', $rootScope.loggedIn);
             $cookies.put('user_login', $scope.user.Login);
-            $cookies.put('user_UniqId', $scope.user.UniqId);
-            var projectCreatorStr = $scope.user.ProjectCreator === true ? "true" : "false";
-            var Admin = $scope.user.Admin === true ? "true" : "false";
-            var Developper = $scope.user.Developper === true ? "true" : "false";
+            $cookies.put('user_id', $scope.user.id);
+            var projectCreatorStr = $scope.user.isProvider === true ? "true" : "false";
+            var Admin = $scope.user.isAdmin === true ? "true" : "false";
+            var Developper = $scope.user.isDevelopper === true ? "true" : "false";
             $cookies.put('user_ProjectCreator', projectCreatorStr);
             $cookies.put('user_Admin', Admin);
             $cookies.put('user_Developper', Developper);
@@ -95,18 +95,6 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
             $rootScope.isDevelopper = $cookies.get('user_Developper') === "true" ? true : false;
             $rootScope.isProjectLeader = $cookies.get('user_ProjectCreator') === "true" ? true : false;
 
-            // Chargement des notifications + changement de couleur de la cloche si notifs non lus.
-
-            $http.get('http://codingmarketplace.apphb.com/api/Notifications/AllForUser/' + $rootScope.user.UniqId).success(function (data) {
-                $rootScope.notifs = data;
-                // Changement de couleur si notif non lue
-                angular.forEach($rootScope.notifs, function (value) {
-                    if (value.Read === false) {
-                        $rootScope.couleur = '#00FF00';
-                    }
-                });
-
-            });
             $scope.hide();
         }).error(function (data) {
             $scope.erreurLogin = true;
@@ -135,14 +123,14 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Accès à mon compte
     $scope.myAccount = function () {
-        $location.path('user/' + $rootScope.user['UniqId']);
+        $location.path('user/' + $scope.user['id']);
     };
 
     // Création d'un project
     $scope.createProject = function () {
-        var project = {ID: 0, Title: $scope.project.projectName, Description: $scope.project.description, Duration: $scope.project.projectDelay, Budget: $scope.project.projectBudget, IdUser: 0, ImageUrl: $rootScope.ImageUrlSaved, CreationDate: ''};
+        var project = {title: $scope.project.projectName, description: $scope.project.description, duration: $scope.project.projectDelay, budget: $scope.project.projectBudget, owner: 'user/'+$scope.user.id};
 
-        $http.post('http://codingmarketplace.apphb.com/api/Projects/Create/' + $rootScope.user['UniqId'], project).success(function (data) {
+        $http.post('/project',project).success(function (data) {
             $scope.hide();
             alert('Le projet a été créé avec succès');
         });
@@ -150,30 +138,18 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Validation des informations d'inscription
     $scope.checkInscriptionInfos = function () {
-        if ($scope.agreecondition !== true) {
-            $scope.notAgreed = true;
-        } else {
-            $scope.notAgreed = false;
-        }
-
-        if ($captchaValidated !== true) {
-            $scope.captchaNotValidated = true;
-        } else {
-            $scope.captchaNotValidated = false;
-        }
-
-        if ($scope.firstname === undefined || $scope.lastname === undefined || $scope.login === undefined || $scope.mail === undefined || $scope.password === undefined || $scope.verif_password === undefined) {
+      if ($scope.firstname === undefined || $scope.lastname === undefined || $scope.login === undefined || $scope.mail === undefined || $scope.password === undefined || $scope.verif_password === undefined) {
             $scope.fieldMissing = true;
         } else {
             $scope.fieldMissing = false;
         }
 
-        if ($scope.fieldMissing === false && $scope.notAgreed === false && $scope.captchaNotValidated === false && $scope.password === $scope.verif_password) {
-            var identification = {Id: 0, Email: $scope.mail, Password: $scope.password, Login: $scope.login, Activated: false, Developper: $scope.inscriptionDevelopper, ProjectCreator: $scope.inscriptionProjectCreator, FirstName: $scope.firstname, LastName: $scope.lastname, Admin: false, UniqId: "", Description: $scope.description, ImageUrl: $rootScope.ImageUrlSaved};
+        if ($scope.fieldMissing === false && $scope.password === $scope.verif_password) {
+            var identification = {login: $scope.login, password: $scope.password, email: $scope.mail,is_dev: $scope.inscriptionDevelopper, is_provider: $scope.inscriptionProjectCreator, firstName: $scope.firstname, lastName: $scope.lastname};
 
             $.ajax({
                 type: "POST",
-                url: "http://codingmarketplace.apphb.com/api/Users/Create",
+                url: "/user/new",
                 contentType: "application/json",
                 data: JSON.stringify(identification),
                 success: function (results) {
@@ -231,38 +207,6 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
                 });
     };
 
-    // Affichage pop-up mot de passe oublié
-    $scope.showDialogForgotPassword = function (e) {
-        $mdDialog.show({
-            controller: DialogController,
-            templateUrl: '/static/partials/dialog-forgot-password.tmpl.html',
-            parent: angular.element(document.body),
-            targetEvent: e,
-            clickOutsideToClose: true
-        })
-                .then(function (answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-    };
-
-    // Demande à l'api l'envoi de mail pour Mot de passe oublié
-    $scope.sendMailForNewPassword = function (e) {
-        var identification = {Email: $scope.email};
-        $.ajax({
-            type: "POST",
-            url: "http://codingmarketplace.apphb.com/api/Users/ForgottenPass/",
-            contentType: "application/json",
-            data: JSON.stringify(identification),
-            success: function (data) {
-                alert("Un mail vous a été envoyé !");
-            },
-            error: function (resultat, status) {
-            }
-        });
-    };
-
     // Affichage  pop-up d'inscription
     $scope.showDialogInscription = function (ev) {
         $mdDialog.show({
@@ -302,15 +246,6 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     };
     $rootScope.closeSideNavPanel = function () {
         $mdSidenav('left').close();
-    };
-
-    $rootScope.openSideNavNotif = function () {
-        $mdSidenav('right').open();
-        $http.post('http://codingmarketplace.apphb.com/api/Notifications/ReadForUser/' + $rootScope.user.UniqId);
-        $rootScope.couleur = '#FFFFFF';
-    };
-    $rootScope.closeSideNavNotif = function () {
-        $mdSidenav('right').close();
     };
 
 

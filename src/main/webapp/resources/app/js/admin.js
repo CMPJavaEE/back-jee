@@ -10,12 +10,14 @@ adminApp.controller('AdminController',
                 $route,
                 UserService)
         {
-
+            if ($rootScope.loggedIn === false || $rootScope.isAdmin === false) {
+                $location.path('#/');
+            }
             // $rootScope
             $test = $cookies.get('loggedIn');
             $rootScope.loggedIn = ($test === "true");
             $rootScope.isAdmin = $cookies.get('user_Admin') === "true" ? true : false;
-            
+
             ////////////////////////////
             /////Functions du scope/////
             ////////////////////////////
@@ -25,18 +27,12 @@ adminApp.controller('AdminController',
             $scope.UserManagement = function () {
                 $location.path('/admin/user-management');
             };
-            $scope.loadUsersData = function () {console.info("coucou");
-                
-                /*if ($rootScope.loggedIn === false || $rootScope.isAdmin === false) {
-                    $location.path('#/');
-                }*/
-            };
 
             $scope.deleteUser = function (id) {
 
                 var userToDelete = {UniqId: id};
 
-                $http({url: 'http://codingmarketplace.apphb.com/api/Users/Delete/' + $scope.adminId,
+                $http({url: '/api/Users/Delete/' + $scope.adminId,
                     method: 'DELETE',
                     data: userToDelete,
                     headers: {"Content-Type": "application/json;charset=utf-8"}
@@ -49,7 +45,7 @@ adminApp.controller('AdminController',
             $scope.updateUser = function (id, admin, projetCreator, Dev) {
 
                 var updateUser = {ID: 0, Admin: admin, ProjectCreator: projetCreator, Developper: Dev, UniqId: id};
-                $http.post('http://codingmarketplace.apphb.com/api/users/ChangeRole/' + $scope.adminId, updateUser).success(function (data) {
+                $http.post('/api/users/ChangeRole/' + $scope.adminId, updateUser).success(function (data) {
 
                     alert(data);
                 })
@@ -65,8 +61,8 @@ adminApp.controller('AdminController',
             $scope.queryFilter = '';
             UserService.all();
             $scope.users = UserService.data;
-            $scope.adminId = $cookies.get('user_UniqId');
-            
+            $scope.adminId = $cookies.get('user_id');
+
         });
 
 

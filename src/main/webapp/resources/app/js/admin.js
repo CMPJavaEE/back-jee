@@ -32,7 +32,7 @@ adminApp.controller('AdminController',
 
                 var userToDelete = {UniqId: id};
 
-                $http({url: 'http://codingmarketplace.apphb.com/api/Users/Delete/' + $scope.adminId,
+                $http({url: '/api/Users/Delete/' + $scope.adminId,
                     method: 'DELETE',
                     data: userToDelete,
                     headers: {"Content-Type": "application/json;charset=utf-8"}
@@ -45,7 +45,7 @@ adminApp.controller('AdminController',
             $scope.updateUser = function (id, admin, projetCreator, Dev) {
 
                 var updateUser = {ID: 0, Admin: admin, ProjectCreator: projetCreator, Developper: Dev, UniqId: id};
-                $http.post('http://codingmarketplace.apphb.com/api/users/ChangeRole/' + $scope.adminId, updateUser).success(function (data) {
+                $http.post('/api/users/ChangeRole/' + $scope.adminId, updateUser).success(function (data) {
 
                     alert(data);
                 })

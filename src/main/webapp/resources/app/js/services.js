@@ -2,8 +2,8 @@ var codingMarketPlaceApp = angular.module('CodingMarketPlaceApp');
 
 codingMarketPlaceApp.factory('User', function($resource) {
     return $resource('', {}, {
-        login: {method: 'post', url:'http://localhost:8080/login'},
-        all: {method: 'get', url:'http://localhost:8080/user/'}
+        login: {method: 'post', url:'/login'},
+        all: {method: 'get', url:'/user/'}
     });
 });
 
@@ -35,7 +35,7 @@ codingMarketPlaceApp.service('UserService', function (User) {
 
 codingMarketPlaceApp.factory('Project', function($resource) {
     return $resource('', {}, {
-        all: {method: 'get', url:'http://localhost:8080/project'}
+        all: {method: 'get', url:'/project'}
     });
 });
 
@@ -48,7 +48,7 @@ codingMarketPlaceApp.service('ProjectService', function (Project, $http) {
         Project.all(function(response) {
             data.projects = response._embedded.project;
             angular.forEach(data.projects, function(projet){
-                $http.get('http://localhost:8080/project/' + projet.id + '/owner').then(function (data) {
+                $http.get('/project/' + projet.id + '/owner').then(function (data) {
                      projet.owner = {
                          name: data.data.firstName + ' ' + data.data.lastName,
                          id: data.data.id

@@ -47,7 +47,7 @@ userApp.controller('UserController',
             ////////////////////////////
 
             $scope.loadUserDetail = function () {
-                $http.get('http://localhost:8080/user/' + $routeParams.userId).success(function (data) {
+                $http.get('/user/' + $routeParams.userId).success(function (data) {
                     $scope.user = data;
                     if ($scope.IdUserConnected === $routeParams.userId)
                     {
@@ -55,7 +55,7 @@ userApp.controller('UserController',
                     }
                     $scope.finishload = true;
                 });
-//                $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + $routeParams.userId).success(function (data) {
+//                $http.get('/api/Users/Detail/' + $routeParams.userId).success(function (data) {
 //                    $scope.user = data;
 //                    if ($scope.IdUserConnected === $routeParams.userId)
 //                    {
@@ -90,7 +90,7 @@ userApp.controller('UserController',
                     if ($scope.password != "") {
                         user_modificated.password = $scope.password;
                     }
-                    $http.put('http://localhost:8080/user/', user_modificated).success(function (data) {
+                    $http.put('/user/', user_modificated).success(function (data) {
                         console.info("data", data);
                         $scope.showAlert();
                     });
@@ -103,12 +103,12 @@ userApp.controller('UserController',
 
             function loadUserProjects() {
 //                if ($rootScope.isDevelopper == true) {
-//                    $http.get('http://codingmarketplace.apphb.com/api/Projects/AllForUser/' + $routeParams.userId).success(function (data) {
+//                    $http.get('/api/Projects/AllForUser/' + $routeParams.userId).success(function (data) {
 //                        $scope.projects = data;
 //                    }).error(function (data) {
 //                    });
 //                } else if ($rootScope.isProjectCreator == true) {
-//                    $http.get('http://codingmarketplace.apphb.com/api/Users/AllProjects/' + $routeParams.userId).success(function (data) {
+//                    $http.get('/api/Users/AllProjects/' + $routeParams.userId).success(function (data) {
 //                        $scope.projects = data;
 //                    }).error(function (data) {
 //                    });

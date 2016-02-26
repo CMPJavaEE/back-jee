@@ -18,7 +18,7 @@ projectApp.controller('ProjectController',
             
             //$scope    
             $scope.IdProject = $routeParams.projectId;
-            $scope.IdCurrentUser = $cookies.get('user_UniqId');
+            $scope.IdCurrentUser = $cookies.get('user_id');
             $scope.currentLeader;
             $scope.alreadyApplied;
             $scope.developperChoose;
@@ -37,9 +37,9 @@ projectApp.controller('ProjectController',
 
             $scope.ApplyProject = function () {
                 var projet = {Id: $scope.projet.Id};
-                $http.post('http://codingmarketplace.apphb.com/api/Projects/Apply/' + $scope.IdCurrentUser, projet).success(function () {
+                $http.post('/api/Projects/Apply/' + $scope.IdCurrentUser, projet).then(function () {
                     $route.reload();
-                }).error(function () {
+                }, function () {
                     alert("Une erreur est survenue...");
                 });
             };
@@ -62,7 +62,7 @@ projectApp.controller('ProjectController',
 
             $scope.ValidateProject = function () {
                 var choice = {Id: $scope.projet.Id, IdUser: $scope.developperChoose};
-                $http.post('http://codingmarketplace.apphb.com/api/Projects/Validate/' + $scope.IdCurrentUser, choice).success(function () {
+                $http.post('/api/Projects/Validate/' + $scope.IdCurrentUser, choice).success(function () {
                     $scope.hide();
                     $route.reload();
                 });
@@ -70,7 +70,7 @@ projectApp.controller('ProjectController',
 
             $scope.FinishProject = function () {
                 var project = {Id: $scope.projet.Id};
-                $http.post('http://codingmarketplace.apphb.com/api/Projects/Finish/' + $scope.projet.IdUser, project).success(function () {
+                $http.post('/api/Projects/Finish/' + $scope.projet.IdUser, project).success(function () {
                     $route.reload();
                 });
             };
@@ -81,10 +81,10 @@ projectApp.controller('ProjectController',
             ////////////////////////////
             
             function loadProjectDetail() {
-                $http.get('http://localhost:8080/project/' + $scope.IdProject).success(function (data) {
+                $http.get('/project/' + $scope.IdProject).success(function (data) {
                     $scope.projet = data;
 //                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
-//                    $http.get('http://codingmarketplace.apphb.com/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
+//                    $http.get('/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
 //                        $scope.applicants = data;
 //                        angular.forEach($scope.applicants, function (value) {
 //                            if (value.UniqId === $scope.IdCurrentUser) {
@@ -92,17 +92,17 @@ projectApp.controller('ProjectController',
 //                            }
 //                        });
 //                    });
-                    $http.get('http://localhost:8080/project/' + $scope.projet.id + '/owner').success(function (data) {
+                    $http.get('/project/' + $scope.projet.id + '/owner').success(function (data) {
                         $scope.leaderProject = data;
                     });
 console.info($scope.projet);
                 }).error(function () {
                     alert("Erreur du chargement des postulants au projet.");
                 });
-//                $http.get('http://codingmarketplace.apphb.com/api/Projects/Detail/' + $scope.IdProject).success(function (data) {
+//                $http.get('/api/Projects/Detail/' + $scope.IdProject).success(function (data) {
 //                    $scope.projet = data;
 //                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
-//                    $http.get('http://codingmarketplace.apphb.com/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
+//                    $http.get('/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
 //                        $scope.applicants = data;
 //                        angular.forEach($scope.applicants, function (value) {
 //                            if (value.UniqId === $scope.IdCurrentUser) {
@@ -110,7 +110,7 @@ console.info($scope.projet);
 //                            }
 //                        });
 //                    });
-//                    $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + $scope.projet.IdUser).success(function (data) {
+//                    $http.get('/api/Users/Detail/' + $scope.projet.IdUser).success(function (data) {
 //                        $scope.leaderProject = data;
 //                    });
 //

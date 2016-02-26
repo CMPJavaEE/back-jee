@@ -26,11 +26,11 @@ projectsApp.controller('ProjectsController',
             ////////////////////////////
 
             function loadProjects() {
-//                $http.get('http://codingmarketplace.apphb.com/api/Projects/All/' + $scope.searchText).success(function (data) {
+//                $http.get('/api/Projects/All/' + $scope.searchText).success(function (data) {
 //                    $scope.projects = data;
 //                    $scope.countProjects = $scope.projects.length || $scope.countProjects;
 //                    angular.forEach($scope.projects, function (projet) {
-//                        $http.get('http://codingmarketplace.apphb.com/api/Users/Detail/' + projet.IdUser).success(function (data) {
+//                        $http.get('/api/Users/Detail/' + projet.IdUser).success(function (data) {
 //                            projet.userName = data.FirstName + ' ' + data.LastName;
 //                        });
 //                    });

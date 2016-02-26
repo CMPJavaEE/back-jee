@@ -78,7 +78,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     // Connexion d'un user
     $scope.connection = function () {
         var identification = {password: $scope.user.password, login: $scope.user.mail};
-        $http.post('http://localhost:8080/user/login', identification).success(function (data) {
+        $http.post('/user/login', identification).success(function (data) {
             $scope.user = data;
             $rootScope.user = $scope.user;
             $rootScope.loggedIn = true;
@@ -123,14 +123,14 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Accès à mon compte
     $scope.myAccount = function () {
-        $location.path('user/' + $rootScope.user['id']);
+        $location.path('user/' + $scope.user['id']);
     };
 
     // Création d'un project
     $scope.createProject = function () {
         var project = {title: $scope.project.projectName, description: $scope.project.description, duration: $scope.project.projectDelay, budget: $scope.project.projectBudget, owner: 'user/'+$scope.user.id};
 
-        $http.post('http://localhost:8080/project',project).success(function (data) {
+        $http.post('/project',project).success(function (data) {
             $scope.hide();
             alert('Le projet a été créé avec succès');
         });
@@ -149,7 +149,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/user/new",
+                url: "/user/new",
                 contentType: "application/json",
                 data: JSON.stringify(identification),
                 success: function (results) {

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Id;
+import javax.persistence.CascadeType;
 import java.io.Serializable;
 import java.util.List;
 
@@ -30,16 +31,16 @@ public class User implements Serializable {
 	public String linkdin;
 	public boolean isAdmin;
 
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.DETACH)
 	public List<Language> progLangs;
 
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	public List<Project> registeredProjects;
 
-	@OneToMany(mappedBy="owner")
+	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)
 	public List<Project> createdProjects;
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	public List<Notification> notifications;
 
 

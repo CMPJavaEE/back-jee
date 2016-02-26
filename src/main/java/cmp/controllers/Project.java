@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,8 @@ public class Project {
 	public int duration;
 	public float budget;
 	public String image;
-	public Date creationDate;
+	@Temporal(TemporalType.DATE)
+	public Date creationDate=new Date();
 	public boolean ended;
 	public boolean started;
 

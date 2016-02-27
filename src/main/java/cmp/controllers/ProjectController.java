@@ -35,4 +35,18 @@ public class ProjectController {
 			return new ResponseEntity<String>("OK", HttpStatus.OK);
 		}
     }
+
+    @RequestMapping(value = "/{projectID}/chooseCandidat/{UID}", method = RequestMethod.POST)
+    public ResponseEntity<?> chooseCandidat(@PathVariable("projectID") Project prj, @PathVariable("UID") User candidat) 
+	{
+		if(prj == null || candidat == null)
+			return new ResponseEntity<String>("Project or User not found !!", HttpStatus.BAD_REQUEST);
+		else
+		{
+			prj.registrations.clear();
+			prj.registrations.add(candidat);
+			projectRepo.save(prj);
+			return new ResponseEntity<String>("OK", HttpStatus.OK);
+		}
+    }
 }

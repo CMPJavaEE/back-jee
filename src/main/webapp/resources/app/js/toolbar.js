@@ -12,7 +12,6 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
     //$rootScope
     $test = $cookies.get('loggedIn');
     $rootScope.loggedIn = ($test === "true");
-    $rootScope.notifs = {};
     $rootScope.couleur = '#FFFFFF';
     $rootScope.isAdmin = $cookies.get('user_Admin') === "true" ? true : false;
     $rootScope.isDevelopper = $cookies.get('user_Developper') === "true" ? true : false;
@@ -53,7 +52,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
         ProjectCreator: $cookies.get('user_ProjectCreator') === "true" ? true : false || undefined,
         tags: []
     };
-    
+
     $scope.userService = UserService.data;
 
 
@@ -70,7 +69,15 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
         $location.path('admin');
     };
 
-
+    if ($rootScope.loggedIn) {
+        $rootScope.user = {
+            id: $cookies.get('user_id'),
+            login: $cookies.get('user_login')
+        };
+        $rootScope.isAdmin = $cookies.get('user_Admin') === "true" ? true : false;
+        $rootScope.isDevelopper = $cookies.get('user_Developper') === "true" ? true : false;
+        $rootScope.isProjectLeader = $cookies.get('user_ProjectCreator') === "true" ? true : false;
+    }
     /////////////////////////////
     ////Fonctions publiques//////
     /////////////////////////////
@@ -123,14 +130,14 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Accès à mon compte
     $scope.myAccount = function () {
-        $location.path('user/' + $scope.user['id']);
+        $location.path('user/' + $scope.user.id);
     };
 
     // Création d'un project
     $scope.createProject = function () {
-        var project = {title: $scope.project.projectName, description: $scope.project.description, duration: $scope.project.projectDelay, budget: $scope.project.projectBudget, owner: 'user/'+$scope.user.id};
+        var project = {title: $scope.project.projectName, description: $scope.project.description, duration: $scope.project.projectDelay, budget: $scope.project.projectBudget, owner: 'user/' + $scope.user.id};
 
-        $http.post('/project',project).success(function (data) {
+        $http.post('/project', project).success(function (data) {
             $scope.hide();
             alert('Le projet a été créé avec succès');
         });
@@ -138,14 +145,14 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Validation des informations d'inscription
     $scope.checkInscriptionInfos = function () {
-      if ($scope.firstname === undefined || $scope.lastname === undefined || $scope.login === undefined || $scope.mail === undefined || $scope.password === undefined || $scope.verif_password === undefined) {
+        if ($scope.firstname === undefined || $scope.lastname === undefined || $scope.login === undefined || $scope.mail === undefined || $scope.password === undefined || $scope.verif_password === undefined) {
             $scope.fieldMissing = true;
         } else {
             $scope.fieldMissing = false;
         }
 
         if ($scope.fieldMissing === false && $scope.password === $scope.verif_password) {
-            var identification = {login: $scope.login, password: $scope.password, email: $scope.mail,is_dev: $scope.inscriptionDevelopper, is_provider: $scope.inscriptionProjectCreator, firstName: $scope.firstname, lastName: $scope.lastname};
+            var identification = {login: $scope.login, password: $scope.password, email: $scope.mail, is_dev: $scope.inscriptionDevelopper, is_provider: $scope.inscriptionProjectCreator, firstName: $scope.firstname, lastName: $scope.lastname};
 
             $.ajax({
                 type: "POST",

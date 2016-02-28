@@ -31,10 +31,10 @@ public class User implements Serializable {
 	public String linkdin;
 	public boolean isAdmin;
 
-	@ManyToMany(cascade=CascadeType.DETACH)
+	@ManyToMany(cascade=CascadeType.ALL)
 	public List<Language> progLangs;
 
-	@ManyToMany(cascade=CascadeType.DETACH)
+	@ManyToMany(cascade=CascadeType.ALL)
 	public List<Project> registeredProjects;
 
 	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)

@@ -8,6 +8,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.persistence.PostLoad;
 import java.util.Date;
 import java.util.List;
 
@@ -32,4 +34,13 @@ public class Project {
 
 	@ManyToMany()
 	public List<User> registrations;
+
+	@Transient
+	public long ownerId;
+
+	@PostLoad
+	public void postLoad()
+	{
+		ownerId = owner.id;
+	}
 }

@@ -34,7 +34,7 @@ public class User implements Serializable {
 	@ManyToMany(cascade=CascadeType.DETACH)
 	public List<Language> progLangs;
 
-	@ManyToMany(cascade=CascadeType.ALL)
+	@ManyToMany(cascade=CascadeType.DETACH)
 	public List<Project> registeredProjects;
 
 	@OneToMany(mappedBy="owner", cascade=CascadeType.ALL)

@@ -83,7 +83,7 @@ projectApp.controller('ProjectController',
             function loadProjectDetail() {
                 $http.get('/project/' + $scope.IdProject).success(function (data) {
                     $scope.projet = data;
-//                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
+                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
 //                    $http.get('/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
 //                        $scope.applicants = data;
 //                        angular.forEach($scope.applicants, function (value) {

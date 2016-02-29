@@ -82,19 +82,18 @@ projectApp.controller('ProjectController',
             function loadProjectDetail() {
                 $http.get('/project/' + $scope.IdProject).success(function (data) {
                     $scope.projet = data;
-                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.IdUser ? true : false;
-//                    $http.get('/api/Projects/UsersApplied/' + $scope.IdProject).success(function (data) {
-//                        $scope.applicants = data;
-//                        angular.forEach($scope.applicants, function (value) {
-//                            if (value.UniqId === $scope.IdCurrentUser) {
-//                                $scope.alreadyApplied = true;
-//                            }
-//                        });
-//                    });
+                    $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.ownerId ? true : false;
+                    $http.get('/project/' + $scope.IdProject + '/registrations').success(function (data) {
+                        $scope.applicants = data;
+                        angular.forEach($scope.applicants, function (value) {
+                            if (value.id === $scope.IdCurrentUser) {
+                                $scope.alreadyApplied = true;
+                            }
+                        });
+                    });
                     $http.get('/project/' + $scope.projet.id + '/owner').success(function (data) {
                         $scope.leaderProject = data;
                     });
-console.info($scope.projet);
                 }).error(function () {
                     alert("Erreur du chargement des postulants au projet.");
                 });

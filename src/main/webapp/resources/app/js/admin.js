@@ -30,11 +30,8 @@ adminApp.controller('AdminController',
 
             $scope.deleteUser = function (id) {
 
-                var userToDelete = {UniqId: id};
-
-                $http({url: '/api/Users/Delete/' + $scope.adminId,
+                $http({url: '/api/user/' + id,
                     method: 'DELETE',
-                    data: userToDelete,
                     headers: {"Content-Type": "application/json;charset=utf-8"}
                 }).success(function (res) {
                     $route.reload();
@@ -44,10 +41,9 @@ adminApp.controller('AdminController',
 
             $scope.updateUser = function (id, admin, projetCreator, Dev) {
 
-                var updateUser = {ID: 0, Admin: admin, ProjectCreator: projetCreator, Developper: Dev, UniqId: id};
-                $http.post('/api/users/ChangeRole/' + $scope.adminId, updateUser).success(function (data) {
-
-                    alert(data);
+                var updateUser = {id: id, Admin: admin, isProvider: projetCreator, isDevelopper: Dev};
+                $http.patch('/user/' + id, updateUser).success(function (data) {
+                    alert("La modification a été réalisée avec succès.");
                 })
                         .error(function (data) {
 

@@ -36,8 +36,7 @@ projectApp.controller('ProjectController',
             };
 
             $scope.ApplyProject = function () {
-                var projet = {Id: $scope.projet.Id};
-                $http.post('/api/Projects/Apply/' + $scope.IdCurrentUser, projet).then(function () {
+                $http.post('/api/project/' + $scope.projet.id + '/addCandidat/' + $rootScope.user.id).then(function () {
                     $route.reload();
                 }, function () {
                     alert("Une erreur est survenue...");

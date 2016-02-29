@@ -130,7 +130,7 @@ toolbarApp.controller('ToolbarCtrl', function ($scope, $rootScope, $mdDialog, $h
 
     // Accès à mon compte
     $scope.myAccount = function () {
-        $location.path('user/' + $scope.user.id);
+        $location.path('user/' + $rootScope.user.id);
     };
 
     // Création d'un project

@@ -92,15 +92,12 @@ userApp.controller('UserController',
                 alert('Vos modifications ont bien été enregistrées..');
             };
             $scope.saveModification = function () {
-                console.info("coucou");
-                console.info($scope.user);
                 if ($scope.password === $scope.verif_password) {
                     var user_modificated = {id: $scope.user.id, email: $scope.user.email, description: $scope.user.description};
-                    if ($scope.password != "") {
+                    if ($scope.password !== "") {
                         user_modificated.password = $scope.password;
                     }
-                    $http.put('/user/', user_modificated).success(function (data) {
-                        console.info("data", data);
+                    $http.patch('/user/' + $scope.user.id, user_modificated).success(function (data) {
                         $scope.showAlert();
                     });
                 }

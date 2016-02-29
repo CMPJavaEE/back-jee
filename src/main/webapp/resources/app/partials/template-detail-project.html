@@ -77,7 +77,7 @@
                 </div>
             </md-toolbar>
             <span flex="50" 
-                  ng-repeat="applicant in applicants">
+                  ng-repeat="applicant in applicants._embedded.user">
                 <img class="roundedMediumImage" 
                      src="{{applicant.ImageUrl}}" 
                      flex-gt="50" 

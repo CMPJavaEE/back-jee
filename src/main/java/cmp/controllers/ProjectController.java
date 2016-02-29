@@ -27,12 +27,12 @@ public class ProjectController {
     public ResponseEntity<?> addCandidat(@PathVariable("projectID") Project prj, @PathVariable("UID") User candidat) 
 	{
 		if(prj == null || candidat == null)
-			return new ResponseEntity<String>("Project or User not found !!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("{\"message\": \"Project or User not found !!\"}", HttpStatus.BAD_REQUEST);
 		else
 		{
 			prj.registrations.add(candidat);
 			projectRepo.save(prj);
-			return new ResponseEntity<String>("OK", HttpStatus.OK);
+			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
 		}
     }
 
@@ -40,13 +40,13 @@ public class ProjectController {
     public ResponseEntity<?> chooseCandidat(@PathVariable("projectID") Project prj, @PathVariable("UID") User candidat) 
 	{
 		if(prj == null || candidat == null)
-			return new ResponseEntity<String>("Project or User not found !!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("{\"message\": \"Project or User not found !!\"}", HttpStatus.BAD_REQUEST);
 		else
 		{
 			prj.registrations.clear();
 			prj.registrations.add(candidat);
 			projectRepo.save(prj);
-			return new ResponseEntity<String>("OK", HttpStatus.OK);
+			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
 		}
     }
 }

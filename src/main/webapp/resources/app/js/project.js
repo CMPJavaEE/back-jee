@@ -84,7 +84,7 @@ projectApp.controller('ProjectController',
                     $scope.projet = data;
                     $scope.currentLeader = $scope.IdCurrentUser === $scope.projet.ownerId ? true : false;
                     $http.get('/project/' + $scope.IdProject + '/registrations').success(function (data) {
-                        $scope.applicants = data;
+                        $scope.applicants = data._embedded.user;
                         angular.forEach($scope.applicants, function (value) {
                             if (value.id === $scope.IdCurrentUser) {
                                 $scope.alreadyApplied = true;

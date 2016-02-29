@@ -36,7 +36,7 @@ projectApp.controller('ProjectController',
             };
 
             $scope.ApplyProject = function () {
-                $http.post('/api/project/' + $scope.projet.id + '/addCandidat/' + $rootScope.user.id).then(function () {
+                $http.post('/project/' + $scope.projet.id + '/addCandidat/' + $rootScope.user.id).then(function () {
                     $route.reload();
                 }, function () {
                     alert("Une erreur est survenue...");
@@ -61,7 +61,7 @@ projectApp.controller('ProjectController',
 
             $scope.ValidateProject = function () {
                 var choice = {Id: $scope.projet.Id, IdUser: $scope.developperChoose};
-                $http.post('/api/Projects/Validate/' + $scope.IdCurrentUser, choice).success(function () {
+                $http.post('/project/Validate/' + $scope.IdCurrentUser, choice).success(function () {
                     $scope.hide();
                     $route.reload();
                 });
@@ -69,7 +69,7 @@ projectApp.controller('ProjectController',
 
             $scope.FinishProject = function () {
                 var project = {Id: $scope.projet.Id};
-                $http.post('/api/Projects/Finish/' + $scope.projet.IdUser, project).success(function () {
+                $http.post('/project/Finish/' + $scope.projet.IdUser, project).success(function () {
                     $route.reload();
                 });
             };

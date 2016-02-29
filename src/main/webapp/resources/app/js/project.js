@@ -47,15 +47,7 @@ projectApp.controller('ProjectController',
                 });
             };
 
-            $scope.ChooseApplicant = function(applicant) {
-                $http.post('/project/' + $scope.projet.id + '/chooseCandidat/' + applicant.id).then(function () {
-                    $route.reload();
-                }, function () {
-                    alert("Une erreur est survenue...");
-                });
-            };
-
-            // Affichage pop-up de validation de projet 
+            // Affichage pop-up de validation de projet
             $scope.ValidateProjectDialog = function (ev) {
                 $mdDialog.show({
                     controller: DialogController,
@@ -72,8 +64,7 @@ projectApp.controller('ProjectController',
             };
 
             $scope.ValidateProject = function () {
-                var choice = {Id: $scope.projet.Id, IdUser: $scope.developperChoose};
-                $http.post('/project/Validate/' + $scope.IdCurrentUser, choice).success(function () {
+                $http.post('/project/' + $scope.projet.id + '/chooseCandidat/' + $scope.developperChoose.id).then(function () {
                     $scope.hide();
                     $route.reload();
                 });

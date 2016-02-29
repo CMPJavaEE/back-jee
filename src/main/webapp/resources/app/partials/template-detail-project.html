@@ -33,17 +33,17 @@
                     <p flex>{{projet.description}}</p>
                 </span>
                 <md-button class="md-raised md-primary" 
-                           ng-show="!currentLeader && isDevelopper && !alreadyApplied && !projet.ended && !projet.started" 
+                           ng-show="!isProjectLeader && isDevelopper && !alreadyApplied && !projet.ended && !projet.started"
                            ng-click="ApplyProject()">
                     Postuler pour le projet
                 </md-button>
                 <md-button class="md-raised md-primary"
-                           ng-show="currentLeader && !projet.ended && !projet.started"
+                           ng-show="isProjectLeader && !projet.ended && !projet.started"
                            ng-click="ValidateProjectDialog()">
                     Valider le projet
                 </md-button>
                 <md-button class="md-raised md-primary"
-                           ng-show="currentLeader && !projet.ended && projet.started"
+                           ng-show="isProjectLeader && !projet.ended && projet.started"
                            ng-click="FinishProject()">
                     Terminer le projet
                 </md-button>
@@ -77,24 +77,20 @@
                 </div>
             </md-toolbar>
             <span flex="50"
-                  ng-repeat="applicant in applicants">
-                <img class="roundedMediumImage" 
-                     src="{{applicant.ImageUrl}}" 
-                     flex-gt="50" 
+                  ng-repeat="applicant in applicants"
+                  ng-click="showApplicantDetail(applicant)">
+                <img class="roundedMediumImage"
+                     src="{{applicant.ImageUrl}}"
+                     flex-gt="50"
                      flex-sm="100"
                      flex-md="100">
 
                 <div layout="column"
                      layout-wrap>
-                    <h2 ng-click="showApplicantDetail(applicant)">
+                    <h2>
                         {{applicant.firstName}} {{applicant.lastName}} <span>({{applicant.login}})</span>
                     </h2>
                     <p>{{applicant.description}}</p>
-                    <md-button class="md-raised md-primary"
-                               ng-show="!projet.started && isProjectLeader"
-                               ng-click="ChooseApplicant(applicant)">
-                            Sélectionner pour développer ce projet
-                    </md-button>
                 </div>
             </span>
         </div>

@@ -72,7 +72,7 @@ projectApp.controller('ProjectController',
 
             $scope.FinishProject = function () {
                 var project = {Id: $scope.projet.Id};
-                $http.post('/project/Finish/' + $scope.projet.IdUser, project).success(function () {
+                $http.post('/project/' + $scope.projet.id + '/end').success(function () {
                     $route.reload();
                 });
             };

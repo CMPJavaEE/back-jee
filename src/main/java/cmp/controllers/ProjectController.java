@@ -40,8 +40,8 @@ public class ProjectController {
 		}
     }
 
-    @RequestMapping(value = "/{projectID}/chooseCandidat/{UID}", method = RequestMethod.POST)
-    public ResponseEntity<?> chooseCandidat(@PathVariable("projectID") Project prj, @PathVariable("UID") User candidat) 
+	@RequestMapping(value = "/{projectID}/chooseCandidat/{UID}", method = RequestMethod.POST)
+	public ResponseEntity<?> chooseCandidat(@PathVariable("projectID") Project prj, @PathVariable("UID") User candidat)
 	{
 		if(prj == null || candidat == null)
 			return new ResponseEntity<String>("{\"message\": \"Project or User not found !!\"}", HttpStatus.BAD_REQUEST);
@@ -50,6 +50,19 @@ public class ProjectController {
 			prj.registrations.clear();
 			prj.registrations.add(candidat);
 			prj.started = true;
+			projectRepo.save(prj);
+			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
+		}
+	}
+
+    @RequestMapping(value = "/{projectID}/end", method = RequestMethod.POST)
+    public ResponseEntity<?> chooseCandidat(@PathVariable("projectID") Project prj)
+	{
+		if(prj == null)
+			return new ResponseEntity<String>("{\"message\": \"Project not found !!\"}", HttpStatus.BAD_REQUEST);
+		else
+		{
+			prj.ended = true;
 			projectRepo.save(prj);
 			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
 		}

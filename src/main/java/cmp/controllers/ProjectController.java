@@ -28,11 +28,15 @@ public class ProjectController {
 	{
 		if(prj == null || candidat == null)
 			return new ResponseEntity<String>("{\"message\": \"Project or User not found !!\"}", HttpStatus.BAD_REQUEST);
-		else
+		else if(!prj.registrations.contains(candidat))
 		{
 			prj.registrations.add(candidat);
 			projectRepo.save(prj);
 			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
+		}
+		else
+		{
+			return new ResponseEntity<String>("{\"message\": \"Already candidated\"}", HttpStatus.OK);
 		}
     }
 

@@ -108,20 +108,20 @@ userApp.controller('UserController',
             ////////////////////////////
 
             function loadUserProjects() {
-//                if ($rootScope.isDevelopper == true) {
-//                    $http.get('/api/Projects/AllForUser/' + $routeParams.userId).success(function (data) {
-//                        $scope.projects = data;
-//                    }).error(function (data) {
-//                    });
-//                } else if ($rootScope.isProjectCreator == true) {
-//                    $http.get('/api/Users/AllProjects/' + $routeParams.userId).success(function (data) {
-//                        $scope.projects = data;
-//                    }).error(function (data) {
-//                    });
-//                }
+                if ($rootScope.isDevelopper == true) {
+                    $http.get('/user/' + $routeParams.userId + '/registeredProjects').success(function (data) {
+                        $scope.registeredProjects = data;
+                    }).error(function (data) {
+                    });
+                } else if ($rootScope.isProjectCreator == true) {
+                    $http.get('/user/' + $routeParams.userId + '/createdProjects').success(function (data) {
+                        $scope.createdProjects = data;
+                    }).error(function (data) {
+                    });
+                }
             }
             ;
-
+            
 
             $scope.loadUserDetail();
         });

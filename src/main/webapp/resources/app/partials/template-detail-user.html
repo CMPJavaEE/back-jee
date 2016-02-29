@@ -95,7 +95,7 @@
              layout-margin 
              layout-padding 
              layout-wrap 
-             ng-repeat="projet in projects| filter: {over: false}" >
+             ng-repeat="projet in registeredProjects| filter: {ended: false}" >
             <img src="{{projet.image}}" 
                  flex-gt="50" 
                  flex-sm="100">
@@ -129,7 +129,7 @@
              layout-margin 
              layout-padding 
              layout-wrap 
-             ng-repeat="projet in projects| filter: {over: true}" >
+             ng-repeat="projet in registeredProjects| filter: {ended: true}" >
             <img src="{{projet.image}}" 
                  flex-gt="50" 
                  flex-sm="100">
@@ -197,7 +197,7 @@
              layout-margin 
              layout-padding 
              layout-wrap 
-             ng-repeat="projet in projects| filter: {ended: true}" >
+             ng-repeat="projet in createdProjects| filter: {ended: true}" >
             <img src="{{projet.image}}" 
                  flex-gt="50" 
                  flex-sm="100">

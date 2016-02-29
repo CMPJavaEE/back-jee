@@ -33,17 +33,17 @@
                     <p flex>{{projet.description}}</p>
                 </span>
                 <md-button class="md-raised md-primary" 
-                           ng-show="!currentLeader && isDevelopper && !alreadyApplied && !projet.over && !projet.started" 
+                           ng-show="!currentLeader && isDevelopper && !alreadyApplied && !projet.ended && !projet.started" 
                            ng-click="ApplyProject()">
                     Postuler pour le projet
                 </md-button>
                 <md-button class="md-raised md-primary"
-                           ng-show="currentLeader && !projet.over && !projet.started"
+                           ng-show="currentLeader && !projet.ended && !projet.started"
                            ng-click="ValidateProjectDialog()">
                     Valider le projet
                 </md-button>
                 <md-button class="md-raised md-primary"
-                           ng-show="currentLeader && !projet.over && projet.started"
+                           ng-show="currentLeader && !projet.ended && projet.started"
                            ng-click="FinishProject()">
                     Terminer le projet
                 </md-button>

@@ -76,21 +76,22 @@
                     </h3>
                 </div>
             </md-toolbar>
-            <span flex="50" 
-                  ng-repeat="applicant in applicants._embedded.user">
+            <span flex="50"
+                  ng-click="showApplicantDetail(applicant)"
+                  ng-repeat="applicant in applicants">
                 <img class="roundedMediumImage" 
                      src="{{applicant.ImageUrl}}" 
                      flex-gt="50" 
                      flex-sm="100"
                      flex-md="100">
 
-                <div layout="column" 
+                <div layout="column"
                      layout-wrap>
                     <h2>{{applicant.firstName}} {{applicant.lastName}} <span>({{applicant.login}})</span></h2>
                     <p>{{applicant.description}}</p>
                 </div>
             </span>
-        </div>    
+        </div>
     </div>
 </div>
 

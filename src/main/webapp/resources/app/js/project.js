@@ -35,6 +35,10 @@ projectApp.controller('ProjectController',
                 $location.path('user/' + $scope.leaderProject.id);
             };
 
+            $scope.showApplicantDetail = function (applicant) {
+                $location.path('user/' + applicant.id);
+            };
+
             $scope.ApplyProject = function () {
                 $http.post('/project/' + $scope.projet.id + '/addCandidat/' + $rootScope.user.id).then(function () {
                     $route.reload();

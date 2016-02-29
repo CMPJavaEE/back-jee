@@ -47,6 +47,14 @@ projectApp.controller('ProjectController',
                 });
             };
 
+            $scope.ChooseApplicant = function(applicant) {
+                $http.post('/project/' + $scope.projet.id + '/chooseCandidat/' + applicant.id).then(function () {
+                    $route.reload();
+                }, function () {
+                    alert("Une erreur est survenue...");
+                });
+            };
+
             // Affichage pop-up de validation de projet 
             $scope.ValidateProjectDialog = function (ev) {
                 $mdDialog.show({

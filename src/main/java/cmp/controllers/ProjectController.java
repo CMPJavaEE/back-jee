@@ -49,6 +49,7 @@ public class ProjectController {
 		{
 			prj.registrations.clear();
 			prj.registrations.add(candidat);
+			prj.started = true;
 			projectRepo.save(prj);
 			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
 		}

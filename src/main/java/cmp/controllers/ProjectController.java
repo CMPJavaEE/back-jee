@@ -23,6 +23,9 @@ public class ProjectController {
 	@Autowired
 	private ProjectRepository projectRepo;
 
+	@Autowired
+	private UserRepository userRepo;
+
     @RequestMapping(value = "/{projectID}/addCandidat/{UID}", method = RequestMethod.POST)
     public ResponseEntity<?> addCandidat(@PathVariable("projectID") Project prj, @PathVariable("UID") User candidat) 
 	{
@@ -51,6 +54,10 @@ public class ProjectController {
 			prj.registrations.add(candidat);
 			prj.started = true;
 			projectRepo.save(prj);
+
+			candidat.registeredProjects.add(prj);
+			userRepo.save(candidat);
+
 			return new ResponseEntity<String>("{\"message\": \"OK\"}", HttpStatus.OK);
 		}
 	}

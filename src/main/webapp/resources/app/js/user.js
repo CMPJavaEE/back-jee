@@ -46,31 +46,32 @@ userApp.controller('UserController',
             ////////////////////////////
 
             $scope.loadUserDetail = function () {
-                $http.get('/user/' + $routeParams.userId).success(function (data) {
-                    $scope.user = data;
+                $http.get('/user/' + $routeParams.userId).then(function (data) {
+                    $scope.user = data.data;
                     if ($scope.IdUserConnected === $routeParams.userId)
                     {
                         $scope.myAccount = true;
                     }
                     $scope.finishload = true;
+
+                    if ($scope.user.isProvider) {
+                        $http.get('/user/' + $routeParams.userId + '/createdProjects').then(function (data2) {
+                            $scope.createdProjects = data2.data._embedded.project;console.info("createdProject", $scope.createdProjects);
+                        });
+                    }
+                    if($scope.user.isDevelopper) {
+                        $http.get('/user/' + $routeParams.userId + '/registeredProjects').then(function(data3) {
+                            $scope.registeredProjects = data3.data._embedded.project;
+                        });
+                    }
+//                    $http.get('/api/Users/Detail/' + $routeParams.userId).then(function (data) {
+//                        $scope.user = data;
+//                        if ($scope.IdUserConnected === $routeParams.userId)
+//                        {
+//                            $scope.myAccount = true;
+//                        }
+//                    });
                 });
-                if ($scope.user.ProjectCreator) {
-                    $http.get('/user/' + $routeParams.userId + '/createdProjects').success(function (data2) {
-                        $scope.createdProjects = data2._embedded.project;console.info("createdProject", $scope.createdProjects);
-                    });
-                }
-                if($scope.Developper) {
-                    $http.get('/user/' + $routeParams.userId + '/registeredProjects').succes(function(data3) {
-                        $scope.registeredProjects = data3._embedded.project;
-                    });
-                }
-//                $http.get('/api/Users/Detail/' + $routeParams.userId).success(function (data) {
-//                    $scope.user = data;
-//                    if ($scope.IdUserConnected === $routeParams.userId)
-//                    {
-//                        $scope.myAccount = true;
-//                    }
-//                });
             };
             $scope.showDialogContact = function (ev) {
                 $mdDialog.show({

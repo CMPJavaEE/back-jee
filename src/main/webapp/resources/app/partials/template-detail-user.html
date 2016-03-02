@@ -87,7 +87,7 @@
 <div class="account md-whiteframe-z1" 
      layout-margin  
      layout-wrap
-     ng-show="isDevelopper">
+     ng-show="user.isDevelopper">
     <h2 class="layout-padding ">Projets en cours de réalisation</h2>
     <h3>{{user.firstName}} réalise actuellement les projets suivants :</h3>
     <div layout-gt-sm="column">
@@ -106,12 +106,12 @@
                     <label>Description</label>
                     <p flex>{{projet.description}}</p>
                 </span>
-                <md-button class="md-raised md-primary">
-                    <a ng-href="#/projects/{{projet.id}}" 
-                       layout-align="bottom left">
+                <a ng-href="/#/projects/{{projet.id}}"
+                   layout-align="bottom left">
+                    <md-button class="md-raised md-primary">
                         Voir les détails du projet
-                    </a>
-                </md-button>
+                    </md-button>
+                </a>
             </div>
             <hr />
         </div>
@@ -121,7 +121,7 @@
 <div class="account md-whiteframe-z1" 
      layout-margin
      layout-wrap
-     ng-show="isDevelopper">
+     ng-show="user.isDevelopper">
     <h2 class="layout-padding ">Projets réalisés</h2>
     <h3>{{user.firstName}} a réalisé les projets suivants :</h3>
     <div layout-gt-sm="column">
@@ -155,7 +155,7 @@
 <div class="account md-whiteframe-z1"
      layout-margin
      layout-wrap
-     ng-show="isProjectCreator">
+     ng-show="user.isProvider">
     <h2 class="layout-padding">Projets proposés</h2>
     <h3>{{user.firstName}} propose les projets suivants :</h3>
     <div layout-gt-sm="column">
@@ -174,7 +174,7 @@
                     <label>Description</label>
                     <p flex>{{projet.description}}</p>
                 </span>
-                <a href="/#/projects/{{projet.id}}"
+                <a ng-href="/#/projects/{{projet.id}}"
                    layout-align="bottom left">
                     <md-button class="md-raised md-primary">
                         Voir les détails du projet
@@ -189,7 +189,7 @@
 <div class="account md-whiteframe-z1"
      layout-margin
      layout-wrap
-     ng-show="isProjectCreator">
+     ng-show="user.isProvider">
     <h2 class="layout-padding">Projets ayant été réalisés</h2>
     <h3>{{user.firstName}} a terminé les projets suivants :</h3>
     <div layout-gt-sm="column">
@@ -208,7 +208,7 @@
                     <label>Description</label>
                     <p flex>{{projet.description}}</p>
                 </span>
-                <a href="/#/projects/{{projet.id}}"
+                <a ng-href="/#/projects/{{projet.id}}"
                    layout-align="bottom left">
                     <md-button class="md-raised md-primary">
                         Voir les détails du projet
